@@ -1,0 +1,30 @@
+name: Create ISO
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        required: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Run a one-line script
+        run: |
+          winget install --id 7zip.7zip
+        
+      - name: Run a one-line script
+        run: curl -o Windows.zip ${{ github.event.inputs.url }}
+
+      - name: Run a multi-line script
+        run: |
+          7z.exe x Windows.zip
+          cd Windows.zip
+          uup_download_windows.cmd
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Windows-ISO
+          path: /home/runner/work/aria2workflow/aria2workflow/
+      
