@@ -13,7 +13,7 @@ jobs:
       - name: Install 7zip
         run: |
           curl -o 7zip.exe https://www.7-zip.org/a/7z1900-x64.exe
-          7zip.exe /S
+          ./7zip.exe /S
         
       - name: Downloading UUP.zip
         run: curl -o Windows.zip ${{ github.event.inputs.url }}
